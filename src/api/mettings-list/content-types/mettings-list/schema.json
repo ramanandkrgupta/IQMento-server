@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mettings_lists",
+  "info": {
+    "singularName": "mettings-list",
+    "pluralName": "mettings-lists",
+    "displayName": "Mettings List"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "alumni": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::alumni.alumni",
+      "inversedBy": "mettings_lists_of_alumni"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "mettings_lists_of_users"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alumnis",
+  "info": {
+    "singularName": "alumni",
+    "pluralName": "alumnis",
+    "displayName": "Alumni"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "almuniId": {
+      "type": "uid"
+    },
+    "college": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::college.college",
+      "inversedBy": "alumnis"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "mettings_lists_of_alumni": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::mettings-list.mettings-list",
+      "mappedBy": "alumni"
+    }
+  }
+}
