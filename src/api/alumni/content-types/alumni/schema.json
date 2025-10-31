@@ -12,7 +12,8 @@
   "pluginOptions": {},
   "attributes": {
     "almuniId": {
-      "type": "uid"
+      "type": "uid",
+      "regex": "^AL\\d{10}$"
     },
     "college": {
       "type": "relation",
@@ -20,16 +21,31 @@
       "target": "api::college.college",
       "inversedBy": "alumnis"
     },
-    "users_permissions_user": {
+    "userId": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "alumniId"
     },
     "mettings_lists_of_alumni": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::mettings-list.mettings-list",
       "mappedBy": "alumni"
+    },
+    "bio": {
+      "type": "text"
+    },
+    "availabilities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::availability.availability",
+      "mappedBy": "availability"
+    },
+    "accept_meets": {
+      "type": "boolean",
+      "private": true,
+      "default": true
     }
   }
 }

@@ -12,7 +12,10 @@
   "pluginOptions": {},
   "attributes": {
     "collegeId": {
-      "type": "biginteger"
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^CLG\\d{10}$"
     },
     "name": {
       "type": "string"
@@ -29,7 +32,7 @@
     "naacRating": {
       "type": "string"
     },
-    "mainImage": {
+    "coverImage": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [

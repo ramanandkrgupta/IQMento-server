@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_shared_availabilities",
+  "info": {
+    "displayName": "Availability",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {},
+  "config": {}
+}

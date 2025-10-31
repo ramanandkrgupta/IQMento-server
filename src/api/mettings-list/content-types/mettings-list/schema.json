@@ -11,17 +11,44 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "meetingId": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^MT\\d{10}$"
+    },
     "alumni": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::alumni.alumni",
       "inversedBy": "mettings_lists_of_alumni"
     },
-    "users_permissions_user": {
+    "userId": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "mettings_lists_of_users"
+    },
+    "mettingLink": {
+      "type": "string"
+    },
+    "currentStatus": {
+      "type": "enumeration",
+      "default": "upcoming",
+      "enum": [
+        "complete",
+        "ongoing",
+        "upcoming"
+      ]
+    },
+    "durationInMin": {
+      "type": "integer"
+    },
+    "paymentId": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::payment-order.payment-order",
+      "mappedBy": "mettingId"
     }
   }
 }

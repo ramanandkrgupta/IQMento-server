@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payment_orders",
+  "info": {
+    "singularName": "payment-order",
+    "pluralName": "payment-orders",
+    "displayName": "Payment Order"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "amount": {
+      "type": "decimal"
+    },
+    "paymentStatus": {
+      "type": "string"
+    },
+    "paymentId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "trancationId": {
+      "type": "string",
+      "required": true
+    },
+    "paymentTime": {
+      "type": "datetime"
+    },
+    "mettingId": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::mettings-list.mettings-list",
+      "inversedBy": "paymentId"
+    }
+  }
+}

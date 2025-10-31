@@ -66,11 +66,35 @@
       "inversedBy": "users",
       "configurable": false
     },
+    "profilePic": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
     "mettings_lists_of_users": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::mettings-list.mettings-list",
-      "mappedBy": "users_permissions_user"
+      "mappedBy": "userId"
+    },
+    "alumniId": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::alumni.alumni",
+      "inversedBy": "userId"
+    },
+    "userRole": {
+      "type": "enumeration",
+      "enum": [
+        "user",
+        "student",
+        "alumni"
+      ]
     }
   }
 }

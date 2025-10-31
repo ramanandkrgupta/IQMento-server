@@ -470,7 +470,15 @@ export interface ApiAlumniAlumni extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    accept_meets: Schema.Attribute.Boolean &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<true>;
     almuniId: Schema.Attribute.UID;
+    availabilities: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::availability.availability'
+    >;
+    bio: Schema.Attribute.Text;
     college: Schema.Attribute.Relation<'manyToOne', 'api::college.college'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -489,111 +497,38 @@ export interface ApiAlumniAlumni extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    users_permissions_user: Schema.Attribute.Relation<
+    userId: Schema.Attribute.Relation<
       'oneToOne',
       'plugin::users-permissions.user'
     >;
   };
 }
 
-export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
-  collectionName: 'articles';
+export interface ApiAvailabilityAvailability
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'availabilities';
   info: {
-    description: 'Create your blog content';
-    displayName: 'Article';
-    pluralName: 'articles';
-    singularName: 'article';
+    displayName: 'Availability';
+    pluralName: 'availabilities';
+    singularName: 'availability';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
-    blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
-    >;
-    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
-    cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    availability: Schema.Attribute.Relation<'manyToOne', 'api::alumni.alumni'>;
+    celenderName: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 80;
-      }>;
+    date: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::article.article'
+      'api::availability.availability'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
-  collectionName: 'authors';
-  info: {
-    description: 'Create authors for your content';
-    displayName: 'Author';
-    pluralName: 'authors';
-    singularName: 'author';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
-    avatar: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::author.author'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
-  collectionName: 'categories';
-  info: {
-    description: 'Organize your content into categories';
-    displayName: 'Category';
-    pluralName: 'categories';
-    singularName: 'category';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -613,10 +548,15 @@ export interface ApiCollegeCollege extends Struct.CollectionTypeSchema {
   attributes: {
     alumnis: Schema.Attribute.Relation<'oneToMany', 'api::alumni.alumni'>;
     campusArea: Schema.Attribute.Decimal;
-    collegeId: Schema.Attribute.BigInteger;
+    collegeId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     collegePhotos: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
+    >;
+    coverImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -630,7 +570,6 @@ export interface ApiCollegeCollege extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     location: Schema.Attribute.JSON;
-    mainImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     naacRating: Schema.Attribute.String;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
@@ -688,20 +627,72 @@ export interface ApiMettingsListMettingsList
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    currentStatus: Schema.Attribute.Enumeration<
+      ['complete', 'ongoing', 'upcoming']
+    > &
+      Schema.Attribute.DefaultTo<'upcoming'>;
+    durationInMin: Schema.Attribute.Integer;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::mettings-list.mettings-list'
     > &
       Schema.Attribute.Private;
+    meetingId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    mettingLink: Schema.Attribute.String;
+    paymentId: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::payment-order.payment-order'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    users_permissions_user: Schema.Attribute.Relation<
+    userId: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+  };
+}
+
+export interface ApiPaymentOrderPaymentOrder
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'payment_orders';
+  info: {
+    displayName: 'Payment Order';
+    pluralName: 'payment-orders';
+    singularName: 'payment-order';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    amount: Schema.Attribute.Decimal;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::payment-order.payment-order'
+    > &
+      Schema.Attribute.Private;
+    mettingId: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::mettings-list.mettings-list'
+    >;
+    paymentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    paymentStatus: Schema.Attribute.String;
+    paymentTime: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    trancationId: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1162,6 +1153,7 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
+    alumniId: Schema.Attribute.Relation<'oneToOne', 'api::alumni.alumni'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1188,6 +1180,9 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    profilePic: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1204,6 +1199,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
+    userRole: Schema.Attribute.Enumeration<['user', 'student', 'alumni']>;
   };
 }
 
@@ -1220,12 +1216,11 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
       'api::alumni.alumni': ApiAlumniAlumni;
-      'api::article.article': ApiArticleArticle;
-      'api::author.author': ApiAuthorAuthor;
-      'api::category.category': ApiCategoryCategory;
+      'api::availability.availability': ApiAvailabilityAvailability;
       'api::college.college': ApiCollegeCollege;
       'api::global.global': ApiGlobalGlobal;
       'api::mettings-list.mettings-list': ApiMettingsListMettingsList;
+      'api::payment-order.payment-order': ApiPaymentOrderPaymentOrder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
