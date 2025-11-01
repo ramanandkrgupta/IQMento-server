@@ -32,6 +32,9 @@
     "mettingLink": {
       "type": "string"
     },
+    "meetingTime": {
+      "type": "datetime"
+    },
     "currentStatus": {
       "type": "enumeration",
       "default": "upcoming",

@@ -521,7 +521,6 @@ export interface ApiAvailabilityAvailability
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    date: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -529,6 +528,7 @@ export interface ApiAvailabilityAvailability
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    timeslot: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -641,6 +641,7 @@ export interface ApiMettingsListMettingsList
     meetingId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    meetingTime: Schema.Attribute.DateTime;
     mettingLink: Schema.Attribute.String;
     paymentId: Schema.Attribute.Relation<
       'oneToOne',

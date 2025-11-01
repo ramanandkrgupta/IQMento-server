@@ -1,0 +1,287 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type SchedulecallsPaymentDetails {
+  amount         Int
+  paymentDate    DateTime @db.Date
+  paymentGateway String
+  paymentId      String
+  transactionId  String
+}
+
+model alumnilists {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  /// Multiple data types found: Int: 98.6%, BigInt: 1.4% out of 71 sampled entries
+  v              Json     @map("__v")
+  bio            String
+  college        String
+  course         String
+  createdAt      DateTime @db.Date
+  currentcompany String
+  currentjobrole String
+  description    String
+  expertise      String
+  /// Multiple data types found: Int: 98.6%, BigInt: 1.4% out of 71 sampled entries
+  graduationyear Json
+  joblocation    String
+  mail           String
+  mobilenumber   String
+  name           String
+  profile        String
+  updatedAt      DateTime @db.Date
+}
+
+model colleges {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  v           Int    @map("__v")
+  address     String
+  /// Multiple data types found: Float: 9.3%, Int: 90.7% out of 250 sampled entries
+  area        Json?
+  description String
+  established Int?
+  imgLink     String
+  location    String
+  mapLink     String
+  naacGrade   String
+  title       String
+  university  String
+}
+
+model joinus {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+model schedulecalls {
+  id               String                      @id @default(auto()) @map("_id") @db.ObjectId
+  v                Int                         @map("__v")
+  callType         String
+  caller           String                      @db.ObjectId
+  createdAt        DateTime                    @db.Date
+  dateTime         DateTime                    @db.Date
+  duration         Int
+  meetLink         String
+  participant      String                      @db.ObjectId
+  participantModel String
+  participantName  String?
+  paymentDetails   SchedulecallsPaymentDetails
+  paymentStatus    String
+  status           String
+  updatedAt        DateTime                    @db.Date
+
+  @@index([caller], map: "caller_1")
+  @@index([participant], map: "participant_1")
+  @@index([dateTime], map: "dateTime_1")
+}
+
+model studentlists {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  v            Int      @map("__v")
+  bio          String
+  college      String
+  course       String
+  createdAt    DateTime @db.Date
+  description  String
+  expertise    String
+  mail         String
+  mobilenumber String
+  name         String
+  profile      String
+  updatedAt    DateTime @db.Date
+}
+
+model users {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                   Int      @map("__v")
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  bio                 Json?
+  birthday            DateTime? @db.Date
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  collegeid           Json?
+  createdAt           DateTime? @db.Date
+  description         String?
+  designation         String?
+  emailIsVerified     Boolean
+  expertise           String[]
+  /// Field referred in an index, but found no data to define the type.
+  mail                Json?     @unique(map: "mail_1")
+  name                String
+  otp                 String?
+  otpExpires          DateTime? @db.Date
+  otpVerifiedForReset Boolean
+  password            String
+  phone               String    @unique(map: "phone_1")
+  phoneIsVerified     Boolean
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  profile             Json?
+  role                Role     @default(USER)
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  scheduledCalls      Json?
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  socialLinks         Json?
+  updatedAt           DateTime? @db.Date @updatedAt
+
+  // New fields for enhanced profile
+  profilePicture      String?
+  location            String?
+  isMentor            Boolean  @default(false)
+  audioCallPrice      Int?     // Price per 30 minutes in paise
+  videoCallPrice      Int?     // Price per 30 minutes in paise
+  rating              Float?   @default(0)
+  totalEarnings       Int?     @default(0)
+  totalSessions       Int?     @default(0)
+  totalUsersConnected Int?     @default(0)
+
+  // Relations
+  educationalQualifications EducationalQualification[]
+  workExperiences          WorkExperience[]
+  timeSlots                TimeSlot[]
+  reviews                  Review[]
+  media                    UserMedia[]
+  availability             Availability[]
+}
+
+enum Role {
+  USER
+  STUDENT
+  ALUMNI
+  ADMIN
+}
+
+model EducationalQualification {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String   @db.ObjectId
+  collegeName String
+  collegeId   String?  @db.ObjectId // Reference to colleges collection
+  course      String
+  branch      String?
+  startMonth  Int?     // 1-12, nullable for existing data
+  startYear   Int?     // e.g., 2020, nullable for existing data
+  endMonth    Int?     // 1-12, null if ongoing
+  endYear     Int?     // e.g., 2024, null if ongoing
+  cgpa        String?
+  location    String?
+  achievements String?
+  description String?
+  media       String[] // URLs to certificates, images, etc.
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model WorkExperience {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String   @db.ObjectId
+  title         String
+  company       String
+  employmentType EmploymentType
+  isCurrent     Boolean  @default(false)
+  startMonth    Int?     // 1-12, nullable for existing data
+  startYear     Int?     // e.g., 2020, nullable for existing data
+  endMonth      Int?     // 1-12, null if current
+  endYear       Int?     // e.g., 2024, null if current
+  location      String?
+  workType      WorkType
+  description   String?
+  media         String[] // URLs to certificates, images, etc.
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user          users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model TimeSlot {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  startTime DateTime?
+  endTime   DateTime?
+  isRecurring Boolean @default(false)
+  recurrencePattern String? // "daily", "weekly", "monthly"
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([startTime])
+}
+
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  reviewerId String  @db.ObjectId
+  bookingId String?  @db.ObjectId
+  rating    Int      // 1-5 stars
+  review    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([reviewerId])
+}
+
+model UserMedia {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  url       String
+  type      MediaType
+  title     String?
+  description String?
+  createdAt DateTime @default(now())
+
+  user      users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Availability {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  dayOfWeek String   // monday, tuesday, etc.
+  startTime String   // HH:MM format
+  endTime   String   // HH:MM format
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([dayOfWeek])
+}
+
+enum EmploymentType {
+  FULL_TIME
+  PART_TIME
+  SELF_EMPLOYED
+  FREELANCE
+  INTERNSHIP
+  TRAINEE
+}
+
+enum WorkType {
+  ON_SITE
+  HYBRID
+  REMOTE
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  DOCUMENT
+  CERTIFICATE
+}

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-31T17:33:22.258Z"
+    "x-generation-date": "2025-11-01T15:47:48.218Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -6557,6 +6557,10 @@
                               "mettingLink": {
                                 "type": "string"
                               },
+                              "meetingTime": {
+                                "type": "string",
+                                "format": "date-time"
+                              },
                               "currentStatus": {
                                 "type": "string",
                                 "enum": [
@@ -6826,10 +6830,7 @@
                           "celenderName": {
                             "type": "string"
                           },
-                          "date": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
+                          "timeslot": {},
                           "createdAt": {
                             "type": "string",
                             "format": "date-time"
@@ -7126,10 +7127,7 @@
               "celenderName": {
                 "type": "string"
               },
-              "date": {
-                "type": "string",
-                "format": "date-time"
-              },
+              "timeslot": {},
               "locale": {
                 "type": "string"
               },
@@ -8396,6 +8394,10 @@
                         "mettingLink": {
                           "type": "string"
                         },
+                        "meetingTime": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
                         "currentStatus": {
                           "type": "string",
                           "enum": [
@@ -8665,10 +8667,7 @@
                     "celenderName": {
                       "type": "string"
                     },
-                    "date": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
+                    "timeslot": {},
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -8782,10 +8781,7 @@
           "celenderName": {
             "type": "string"
           },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "timeslot": {},
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -10473,6 +10469,10 @@
                           "mettingLink": {
                             "type": "string"
                           },
+                          "meetingTime": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
                           "currentStatus": {
                             "type": "string",
                             "enum": [
@@ -10742,10 +10742,7 @@
                       "celenderName": {
                         "type": "string"
                       },
-                      "date": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
+                      "timeslot": {},
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -12066,6 +12063,10 @@
               "mettingLink": {
                 "type": "string"
               },
+              "meetingTime": {
+                "type": "string",
+                "format": "date-time"
+              },
               "currentStatus": {
                 "type": "string",
                 "enum": [
@@ -13360,6 +13361,10 @@
                         "mettingLink": {
                           "type": "string"
                         },
+                        "meetingTime": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
                         "currentStatus": {
                           "type": "string",
                           "enum": [
@@ -13629,10 +13634,7 @@
                     "celenderName": {
                       "type": "string"
                     },
-                    "date": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
+                    "timeslot": {},
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -13756,6 +13758,10 @@
           },
           "mettingLink": {
             "type": "string"
+          },
+          "meetingTime": {
+            "type": "string",
+            "format": "date-time"
           },
           "currentStatus": {
             "type": "string",
@@ -15272,10 +15278,7 @@
                         "celenderName": {
                           "type": "string"
                         },
-                        "date": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
+                        "timeslot": {},
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -15399,6 +15402,10 @@
               },
               "mettingLink": {
                 "type": "string"
+              },
+              "meetingTime": {
+                "type": "string",
+                "format": "date-time"
               },
               "currentStatus": {
                 "type": "string",
