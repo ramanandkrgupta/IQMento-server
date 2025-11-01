@@ -480,19 +480,29 @@ export interface ApiAlumniAlumni extends Struct.CollectionTypeSchema {
     >;
     bio: Schema.Attribute.Text;
     college: Schema.Attribute.Relation<'manyToOne', 'api::college.college'>;
+    course: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    currentCompany: Schema.Attribute.String;
+    currentJobRole: Schema.Attribute.String;
+    graduationYear: Schema.Attribute.Integer;
+    isBookable: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    isFeatured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    jobLocation: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::alumni.alumni'
     > &
       Schema.Attribute.Private;
+    mail: Schema.Attribute.Email;
     mettings_lists_of_alumni: Schema.Attribute.Relation<
       'oneToMany',
       'api::mettings-list.mettings-list'
     >;
+    mobileNumber: Schema.Attribute.String;
+    profile: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -546,6 +556,7 @@ export interface ApiCollegeCollege extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    address: Schema.Attribute.String;
     alumnis: Schema.Attribute.Relation<'oneToMany', 'api::alumni.alumni'>;
     campusArea: Schema.Attribute.Decimal;
     collegeId: Schema.Attribute.String &
@@ -563,6 +574,7 @@ export interface ApiCollegeCollege extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     descriptions: Schema.Attribute.Text;
     estYear: Schema.Attribute.Integer;
+    isFeatured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -570,9 +582,11 @@ export interface ApiCollegeCollege extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     location: Schema.Attribute.JSON;
+    mapLink: Schema.Attribute.String;
     naacRating: Schema.Attribute.String;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    university: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1155,23 +1169,33 @@ export interface PluginUsersPermissionsUser
   };
   attributes: {
     alumniId: Schema.Attribute.Relation<'oneToOne', 'api::alumni.alumni'>;
+    audioCallPrice: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    bio: Schema.Attribute.Text;
+    birthday: Schema.Attribute.Date;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    designation: Schema.Attribute.String;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    emailIsVerified: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    expertise: Schema.Attribute.JSON;
+    isMentor: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    location: Schema.Attribute.String;
     mettings_lists_of_users: Schema.Attribute.Relation<
       'oneToMany',
       'api::mettings-list.mettings-list'
@@ -1181,16 +1205,24 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    phone: Schema.Attribute.String & Schema.Attribute.Unique;
+    phoneIsVerified: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     profilePic: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    rating: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0>;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    totalEarnings: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    totalSessions: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    totalUsersConnected: Schema.Attribute.Integer &
+      Schema.Attribute.DefaultTo<0>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1201,6 +1233,7 @@ export interface PluginUsersPermissionsUser
         minLength: 3;
       }>;
     userRole: Schema.Attribute.Enumeration<['user', 'student', 'alumni']>;
+    videoCallPrice: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
   };
 }
 

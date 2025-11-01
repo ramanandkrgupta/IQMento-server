@@ -46,6 +46,38 @@
       "type": "boolean",
       "private": true,
       "default": true
+    },
+    "course": {
+      "type": "string"
+    },
+    "graduationYear": {
+      "type": "integer"
+    },
+    "currentCompany": {
+      "type": "string"
+    },
+    "currentJobRole": {
+      "type": "string"
+    },
+    "jobLocation": {
+      "type": "string"
+    },
+    "mobileNumber": {
+      "type": "string"
+    },
+    "mail": {
+      "type": "email"
+    },
+    "profile": {
+      "type": "string"
+    },
+    "isBookable": {
+      "type": "boolean",
+      "default": false
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

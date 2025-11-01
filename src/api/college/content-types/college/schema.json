@@ -60,6 +60,19 @@
       "relation": "oneToMany",
       "target": "api::alumni.alumni",
       "mappedBy": "college"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    },
+    "address": {
+      "type": "string"
+    },
+    "mapLink": {
+      "type": "string"
+    },
+    "university": {
+      "type": "string"
     }
   }
 }

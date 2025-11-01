@@ -95,6 +95,64 @@
         "student",
         "alumni"
       ]
+    },
+    "phone": {
+      "type": "string",
+      "unique": true
+    },
+    "phoneIsVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "emailIsVerified": {
+      "type": "boolean",
+      "default": false
+    },
+    "bio": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    },
+    "designation": {
+      "type": "string"
+    },
+    "birthday": {
+      "type": "date"
+    },
+    "location": {
+      "type": "string"
+    },
+    "expertise": {
+      "type": "json"
+    },
+    "isMentor": {
+      "type": "boolean",
+      "default": false
+    },
+    "audioCallPrice": {
+      "type": "integer",
+      "default": 0
+    },
+    "videoCallPrice": {
+      "type": "integer",
+      "default": 0
+    },
+    "rating": {
+      "type": "decimal",
+      "default": 0
+    },
+    "totalEarnings": {
+      "type": "integer",
+      "default": 0
+    },
+    "totalSessions": {
+      "type": "integer",
+      "default": 0
+    },
+    "totalUsersConnected": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

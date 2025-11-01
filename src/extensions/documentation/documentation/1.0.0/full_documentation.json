@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-01T15:47:48.218Z"
+    "x-generation-date": "2025-11-01T17:03:06.441Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -5342,6 +5342,37 @@
               "accept_meets": {
                 "type": "boolean"
               },
+              "course": {
+                "type": "string"
+              },
+              "graduationYear": {
+                "type": "integer"
+              },
+              "currentCompany": {
+                "type": "string"
+              },
+              "currentJobRole": {
+                "type": "string"
+              },
+              "jobLocation": {
+                "type": "string"
+              },
+              "mobileNumber": {
+                "type": "string"
+              },
+              "mail": {
+                "type": "string",
+                "format": "email"
+              },
+              "profile": {
+                "type": "string"
+              },
+              "isBookable": {
+                "type": "boolean"
+              },
+              "isFeatured": {
+                "type": "boolean"
+              },
               "locale": {
                 "type": "string"
               },
@@ -6735,6 +6766,54 @@
                             "alumni"
                           ]
                         },
+                        "phone": {
+                          "type": "string"
+                        },
+                        "phoneIsVerified": {
+                          "type": "boolean"
+                        },
+                        "emailIsVerified": {
+                          "type": "boolean"
+                        },
+                        "bio": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "designation": {
+                          "type": "string"
+                        },
+                        "birthday": {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        "location": {
+                          "type": "string"
+                        },
+                        "expertise": {},
+                        "isMentor": {
+                          "type": "boolean"
+                        },
+                        "audioCallPrice": {
+                          "type": "integer"
+                        },
+                        "videoCallPrice": {
+                          "type": "integer"
+                        },
+                        "rating": {
+                          "type": "number",
+                          "format": "float"
+                        },
+                        "totalEarnings": {
+                          "type": "integer"
+                        },
+                        "totalSessions": {
+                          "type": "integer"
+                        },
+                        "totalUsersConnected": {
+                          "type": "integer"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -6888,6 +6967,37 @@
                     "accept_meets": {
                       "type": "boolean"
                     },
+                    "course": {
+                      "type": "string"
+                    },
+                    "graduationYear": {
+                      "type": "integer"
+                    },
+                    "currentCompany": {
+                      "type": "string"
+                    },
+                    "currentJobRole": {
+                      "type": "string"
+                    },
+                    "jobLocation": {
+                      "type": "string"
+                    },
+                    "mobileNumber": {
+                      "type": "string"
+                    },
+                    "mail": {
+                      "type": "string",
+                      "format": "email"
+                    },
+                    "profile": {
+                      "type": "string"
+                    },
+                    "isBookable": {
+                      "type": "boolean"
+                    },
+                    "isFeatured": {
+                      "type": "boolean"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -6941,6 +7051,18 @@
                     }
                   }
                 }
+              },
+              "isFeatured": {
+                "type": "boolean"
+              },
+              "address": {
+                "type": "string"
+              },
+              "mapLink": {
+                "type": "string"
+              },
+              "university": {
+                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -7038,6 +7160,37 @@
             }
           },
           "accept_meets": {
+            "type": "boolean"
+          },
+          "course": {
+            "type": "string"
+          },
+          "graduationYear": {
+            "type": "integer"
+          },
+          "currentCompany": {
+            "type": "string"
+          },
+          "currentJobRole": {
+            "type": "string"
+          },
+          "jobLocation": {
+            "type": "string"
+          },
+          "mobileNumber": {
+            "type": "string"
+          },
+          "mail": {
+            "type": "string",
+            "format": "email"
+          },
+          "profile": {
+            "type": "string"
+          },
+          "isBookable": {
+            "type": "boolean"
+          },
+          "isFeatured": {
             "type": "boolean"
           },
           "createdAt": {
@@ -7978,6 +8131,18 @@
                       }
                     }
                   },
+                  "isFeatured": {
+                    "type": "boolean"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "mapLink": {
+                    "type": "string"
+                  },
+                  "university": {
+                    "type": "string"
+                  },
                   "createdAt": {
                     "type": "string",
                     "format": "date-time"
@@ -8572,6 +8737,54 @@
                       "alumni"
                     ]
                   },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "phoneIsVerified": {
+                    "type": "boolean"
+                  },
+                  "emailIsVerified": {
+                    "type": "boolean"
+                  },
+                  "bio": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "designation": {
+                    "type": "string"
+                  },
+                  "birthday": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "location": {
+                    "type": "string"
+                  },
+                  "expertise": {},
+                  "isMentor": {
+                    "type": "boolean"
+                  },
+                  "audioCallPrice": {
+                    "type": "integer"
+                  },
+                  "videoCallPrice": {
+                    "type": "integer"
+                  },
+                  "rating": {
+                    "type": "number",
+                    "format": "float"
+                  },
+                  "totalEarnings": {
+                    "type": "integer"
+                  },
+                  "totalSessions": {
+                    "type": "integer"
+                  },
+                  "totalUsersConnected": {
+                    "type": "integer"
+                  },
                   "createdAt": {
                     "type": "string",
                     "format": "date-time"
@@ -8723,6 +8936,37 @@
                 }
               },
               "accept_meets": {
+                "type": "boolean"
+              },
+              "course": {
+                "type": "string"
+              },
+              "graduationYear": {
+                "type": "integer"
+              },
+              "currentCompany": {
+                "type": "string"
+              },
+              "currentJobRole": {
+                "type": "string"
+              },
+              "jobLocation": {
+                "type": "string"
+              },
+              "mobileNumber": {
+                "type": "string"
+              },
+              "mail": {
+                "type": "string",
+                "format": "email"
+              },
+              "profile": {
+                "type": "string"
+              },
+              "isBookable": {
+                "type": "boolean"
+              },
+              "isFeatured": {
                 "type": "boolean"
               },
               "createdAt": {
@@ -8916,6 +9160,18 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "isFeatured": {
+                "type": "boolean"
+              },
+              "address": {
+                "type": "string"
+              },
+              "mapLink": {
+                "type": "string"
+              },
+              "university": {
+                "type": "string"
               },
               "locale": {
                 "type": "string"
@@ -10053,6 +10309,18 @@
                         }
                       }
                     },
+                    "isFeatured": {
+                      "type": "boolean"
+                    },
+                    "address": {
+                      "type": "string"
+                    },
+                    "mapLink": {
+                      "type": "string"
+                    },
+                    "university": {
+                      "type": "string"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -10647,6 +10915,54 @@
                         "alumni"
                       ]
                     },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "phoneIsVerified": {
+                      "type": "boolean"
+                    },
+                    "emailIsVerified": {
+                      "type": "boolean"
+                    },
+                    "bio": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "designation": {
+                      "type": "string"
+                    },
+                    "birthday": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "expertise": {},
+                    "isMentor": {
+                      "type": "boolean"
+                    },
+                    "audioCallPrice": {
+                      "type": "integer"
+                    },
+                    "videoCallPrice": {
+                      "type": "integer"
+                    },
+                    "rating": {
+                      "type": "number",
+                      "format": "float"
+                    },
+                    "totalEarnings": {
+                      "type": "integer"
+                    },
+                    "totalSessions": {
+                      "type": "integer"
+                    },
+                    "totalUsersConnected": {
+                      "type": "integer"
+                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -10800,6 +11116,37 @@
                 "accept_meets": {
                   "type": "boolean"
                 },
+                "course": {
+                  "type": "string"
+                },
+                "graduationYear": {
+                  "type": "integer"
+                },
+                "currentCompany": {
+                  "type": "string"
+                },
+                "currentJobRole": {
+                  "type": "string"
+                },
+                "jobLocation": {
+                  "type": "string"
+                },
+                "mobileNumber": {
+                  "type": "string"
+                },
+                "mail": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "profile": {
+                  "type": "string"
+                },
+                "isBookable": {
+                  "type": "boolean"
+                },
+                "isFeatured": {
+                  "type": "boolean"
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -10853,6 +11200,18 @@
                 }
               }
             }
+          },
+          "isFeatured": {
+            "type": "boolean"
+          },
+          "address": {
+            "type": "string"
+          },
+          "mapLink": {
+            "type": "string"
+          },
+          "university": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -12945,6 +13304,18 @@
                       }
                     }
                   },
+                  "isFeatured": {
+                    "type": "boolean"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "mapLink": {
+                    "type": "string"
+                  },
+                  "university": {
+                    "type": "string"
+                  },
                   "createdAt": {
                     "type": "string",
                     "format": "date-time"
@@ -13539,6 +13910,54 @@
                       "alumni"
                     ]
                   },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "phoneIsVerified": {
+                    "type": "boolean"
+                  },
+                  "emailIsVerified": {
+                    "type": "boolean"
+                  },
+                  "bio": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "designation": {
+                    "type": "string"
+                  },
+                  "birthday": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "location": {
+                    "type": "string"
+                  },
+                  "expertise": {},
+                  "isMentor": {
+                    "type": "boolean"
+                  },
+                  "audioCallPrice": {
+                    "type": "integer"
+                  },
+                  "videoCallPrice": {
+                    "type": "integer"
+                  },
+                  "rating": {
+                    "type": "number",
+                    "format": "float"
+                  },
+                  "totalEarnings": {
+                    "type": "integer"
+                  },
+                  "totalSessions": {
+                    "type": "integer"
+                  },
+                  "totalUsersConnected": {
+                    "type": "integer"
+                  },
                   "createdAt": {
                     "type": "string",
                     "format": "date-time"
@@ -13690,6 +14109,37 @@
                 }
               },
               "accept_meets": {
+                "type": "boolean"
+              },
+              "course": {
+                "type": "string"
+              },
+              "graduationYear": {
+                "type": "integer"
+              },
+              "currentCompany": {
+                "type": "string"
+              },
+              "currentJobRole": {
+                "type": "string"
+              },
+              "jobLocation": {
+                "type": "string"
+              },
+              "mobileNumber": {
+                "type": "string"
+              },
+              "mail": {
+                "type": "string",
+                "format": "email"
+              },
+              "profile": {
+                "type": "string"
+              },
+              "isBookable": {
+                "type": "boolean"
+              },
+              "isFeatured": {
                 "type": "boolean"
               },
               "createdAt": {
@@ -14773,6 +15223,18 @@
                           }
                         }
                       },
+                      "isFeatured": {
+                        "type": "boolean"
+                      },
+                      "address": {
+                        "type": "string"
+                      },
+                      "mapLink": {
+                        "type": "string"
+                      },
+                      "university": {
+                        "type": "string"
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -15183,6 +15645,54 @@
                           "alumni"
                         ]
                       },
+                      "phone": {
+                        "type": "string"
+                      },
+                      "phoneIsVerified": {
+                        "type": "boolean"
+                      },
+                      "emailIsVerified": {
+                        "type": "boolean"
+                      },
+                      "bio": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "designation": {
+                        "type": "string"
+                      },
+                      "birthday": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "location": {
+                        "type": "string"
+                      },
+                      "expertise": {},
+                      "isMentor": {
+                        "type": "boolean"
+                      },
+                      "audioCallPrice": {
+                        "type": "integer"
+                      },
+                      "videoCallPrice": {
+                        "type": "integer"
+                      },
+                      "rating": {
+                        "type": "number",
+                        "format": "float"
+                      },
+                      "totalEarnings": {
+                        "type": "integer"
+                      },
+                      "totalSessions": {
+                        "type": "integer"
+                      },
+                      "totalUsersConnected": {
+                        "type": "integer"
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -15334,6 +15844,37 @@
                     }
                   },
                   "accept_meets": {
+                    "type": "boolean"
+                  },
+                  "course": {
+                    "type": "string"
+                  },
+                  "graduationYear": {
+                    "type": "integer"
+                  },
+                  "currentCompany": {
+                    "type": "string"
+                  },
+                  "currentJobRole": {
+                    "type": "string"
+                  },
+                  "jobLocation": {
+                    "type": "string"
+                  },
+                  "mobileNumber": {
+                    "type": "string"
+                  },
+                  "mail": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "profile": {
+                    "type": "string"
+                  },
+                  "isBookable": {
+                    "type": "boolean"
+                  },
+                  "isFeatured": {
                     "type": "boolean"
                   },
                   "createdAt": {
