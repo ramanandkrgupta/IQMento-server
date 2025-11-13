@@ -4,7 +4,8 @@
   "info": {
     "singularName": "alumni",
     "pluralName": "alumnis",
-    "displayName": "Alumni"
+    "displayName": "Alumni",
+    "description": "Alumni mentors and their profiles"
   },
   "options": {
     "draftAndPublish": true
@@ -12,46 +13,37 @@
   "pluginOptions": {},
   "attributes": {
     "almuniId": {
-      "type": "uid",
-      "regex": "^AL\\d{10}$"
-    },
-    "college": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::college.college",
-      "inversedBy": "alumnis"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "userId": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user",
-      "mappedBy": "alumniId"
+  "type": "relation",
+  "relation": "oneToOne",
+  "target": "plugin::users-permissions.user",
+  "mappedBy": "alumniId"
+},
+    "name": {
+      "type": "string",
+      "required": true
     },
-    "mettings_lists_of_alumni": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::mettings-list.mettings-list",
-      "mappedBy": "alumni"
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true,
+      "unique": true
     },
-    "bio": {
+    "headline": {
       "type": "text"
     },
-    "availabilities": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::availability.availability",
-      "mappedBy": "availability"
+    "bio": {
+      "type": "richtext"
     },
-    "accept_meets": {
-      "type": "boolean",
-      "private": true,
-      "default": true
-    },
-    "course": {
+    "location": {
       "type": "string"
     },
-    "graduationYear": {
-      "type": "integer"
+    "jobLocation": {
+      "type": "string"
     },
     "currentCompany": {
       "type": "string"
@@ -59,8 +51,11 @@
     "currentJobRole": {
       "type": "string"
     },
-    "jobLocation": {
+    "course": {
       "type": "string"
+    },
+    "graduationYear": {
+      "type": "integer"
     },
     "mobileNumber": {
       "type": "string"
@@ -69,15 +64,80 @@
       "type": "email"
     },
     "profile": {
-      "type": "string"
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
     },
     "isBookable": {
+      "type": "boolean",
+      "default": false
+    },
+    "accept_meets": {
       "type": "boolean",
       "default": false
     },
     "isFeatured": {
       "type": "boolean",
       "default": false
+    },
+    "heroTagline": {
+      "type": "text"
+    },
+    "heroSummary": {
+      "type": "json"
+    },
+    "overview": {
+      "type": "json"
+    },
+    "availability": {
+      "type": "string"
+    },
+    "availabilities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::availability.availability",
+      "mappedBy": "availability"
+    },
+    "mettings_lists_of_alumni": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::mettings-list.mettings-list",
+      "mappedBy": "alumni"
+    },
+    "stats": {
+      "type": "json"
+    },
+    "focusAreas": {
+      "type": "json"
+    },
+    "sessions": {
+      "type": "json"
+    },
+    "highlights": {
+      "type": "json"
+    },
+    "resources": {
+      "type": "json"
+    },
+    "reviews": {
+      "type": "json"
+    },
+    "featuredQuote": {
+      "type": "text"
+    },
+    "bookingUrl": {
+      "type": "string"
+    },
+    "questionUrl": {
+      "type": "string"
     }
   }
 }
+

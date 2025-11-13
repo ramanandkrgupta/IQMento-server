@@ -462,6 +462,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
 export interface ApiAlumniAlumni extends Struct.CollectionTypeSchema {
   collectionName: 'alumnis';
   info: {
+    description: 'Alumni mentors and their profiles';
     displayName: 'Alumni';
     pluralName: 'alumnis';
     singularName: 'alumni';
@@ -470,23 +471,31 @@ export interface ApiAlumniAlumni extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    accept_meets: Schema.Attribute.Boolean &
-      Schema.Attribute.Private &
-      Schema.Attribute.DefaultTo<true>;
-    almuniId: Schema.Attribute.UID;
+    accept_meets: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    almuniId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     availabilities: Schema.Attribute.Relation<
       'oneToMany',
       'api::availability.availability'
     >;
-    bio: Schema.Attribute.Text;
-    college: Schema.Attribute.Relation<'manyToOne', 'api::college.college'>;
+    availability: Schema.Attribute.String;
+    bio: Schema.Attribute.RichText;
+    bookingUrl: Schema.Attribute.String;
     course: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     currentCompany: Schema.Attribute.String;
     currentJobRole: Schema.Attribute.String;
+    featuredQuote: Schema.Attribute.Text;
+    focusAreas: Schema.Attribute.JSON;
     graduationYear: Schema.Attribute.Integer;
+    headline: Schema.Attribute.Text;
+    heroImage: Schema.Attribute.Media<'images'>;
+    heroSummary: Schema.Attribute.JSON;
+    heroTagline: Schema.Attribute.Text;
+    highlights: Schema.Attribute.JSON;
     isBookable: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     isFeatured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     jobLocation: Schema.Attribute.String;
@@ -496,14 +505,25 @@ export interface ApiAlumniAlumni extends Struct.CollectionTypeSchema {
       'api::alumni.alumni'
     > &
       Schema.Attribute.Private;
+    location: Schema.Attribute.String;
     mail: Schema.Attribute.Email;
     mettings_lists_of_alumni: Schema.Attribute.Relation<
       'oneToMany',
       'api::mettings-list.mettings-list'
     >;
     mobileNumber: Schema.Attribute.String;
-    profile: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    overview: Schema.Attribute.JSON;
+    profile: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
+    questionUrl: Schema.Attribute.String;
+    resources: Schema.Attribute.JSON;
+    reviews: Schema.Attribute.JSON;
+    sessions: Schema.Attribute.JSON;
+    slug: Schema.Attribute.UID<'name'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    stats: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -548,6 +568,7 @@ export interface ApiAvailabilityAvailability
 export interface ApiCollegeCollege extends Struct.CollectionTypeSchema {
   collectionName: 'colleges';
   info: {
+    description: 'College profiles and information';
     displayName: 'College';
     pluralName: 'colleges';
     singularName: 'college';
@@ -556,37 +577,32 @@ export interface ApiCollegeCollege extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    address: Schema.Attribute.String;
-    alumnis: Schema.Attribute.Relation<'oneToMany', 'api::alumni.alumni'>;
-    campusArea: Schema.Attribute.Decimal;
-    collegeId: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    collegePhotos: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    coverImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
+    about: Schema.Attribute.JSON;
+    admission: Schema.Attribute.JSON;
+    alumni: Schema.Attribute.JSON;
+    courses: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    descriptions: Schema.Attribute.Text;
-    estYear: Schema.Attribute.Integer;
-    isFeatured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    faqs: Schema.Attribute.JSON;
+    hero: Schema.Attribute.JSON;
+    heroImage: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::college.college'
     > &
       Schema.Attribute.Private;
-    location: Schema.Attribute.JSON;
-    mapLink: Schema.Attribute.String;
-    naacRating: Schema.Attribute.String;
-    name: Schema.Attribute.String;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    metadata: Schema.Attribute.JSON;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    university: Schema.Attribute.String;
+    recruiters: Schema.Attribute.JSON;
+    reviews: Schema.Attribute.JSON;
+    shortName: Schema.Attribute.String;
+    slug: Schema.Attribute.UID<'name'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

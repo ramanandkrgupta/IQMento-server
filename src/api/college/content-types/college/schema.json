@@ -4,75 +4,64 @@
   "info": {
     "singularName": "college",
     "pluralName": "colleges",
-    "displayName": "College"
+    "displayName": "College",
+    "description": "College profiles and information"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "collegeId": {
-      "type": "string",
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
       "required": true,
-      "unique": true,
-      "regex": "^CLG\\d{10}$"
+      "unique": true
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
-    "descriptions": {
-      "type": "text"
+    "shortName": {
+      "type": "string"
     },
     "location": {
-      "type": "json"
+      "type": "string",
+      "required": true
     },
-    "estYear": {
-      "type": "integer"
-    },
-    "naacRating": {
-      "type": "string"
-    },
-    "coverImage": {
+    "heroImage": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "required": false,
+      "allowedTypes": ["images"]
     },
-    "collegePhotos": {
-      "type": "media",
-      "multiple": true,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "hero": {
+      "type": "json"
     },
-    "campusArea": {
-      "type": "decimal"
+    "about": {
+      "type": "json"
     },
-    "alumnis": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::alumni.alumni",
-      "mappedBy": "college"
+    "courses": {
+      "type": "json"
     },
-    "isFeatured": {
-      "type": "boolean",
-      "default": false
+    "admission": {
+      "type": "json"
     },
-    "address": {
-      "type": "string"
+    "recruiters": {
+      "type": "json"
     },
-    "mapLink": {
-      "type": "string"
+    "reviews": {
+      "type": "json"
     },
-    "university": {
-      "type": "string"
+    "alumni": {
+      "type": "json"
+    },
+    "faqs": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
     }
   }
 }
+
